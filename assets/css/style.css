@@ -1,0 +1,121 @@
+@import url("reset.css");
+
+.wrap {
+  width: 700px;
+  height: auto;
+  margin: 50px auto 0;
+}
+
+.coloringWrap {
+  position: relative;
+  width: 715px;
+  height: 520px;
+  padding-right: 220px;
+}
+.coloringWrap .coloringArea {
+  width: 500px;
+  height: 100%;
+  padding: 20px;
+  border: 1px solid #000;
+  background-color: #fff;
+  text-align: center;
+}
+.coloringArea object {
+  display: inline-block;
+  max-width: 400px;
+  height: 100%;
+}
+
+.coloringWrap .sketchListArea {
+  overflow-y: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 100%;
+}
+.sketchList {
+  margin: -2px 0;
+}
+.sketchList li {
+  display: inline-block;
+  position: relative;
+  width: 50%;
+  height: 100px;
+  margin: 2px 0;
+  padding: 0 2px;
+  vertical-align: top;
+}
+.sketchList li button {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #fff;
+  background-color: #d6d6d6;
+  opacity: 0.7;
+}
+.sketchList li.on button,
+.sketchList li button:hover,
+.sketchList li button:focus {
+  border-color: #000;
+  opacity: 1;
+}
+.sketchList li img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 80%;
+  max-height: 80%;
+  transform: translate(-50%, -50%);
+}
+
+.colorChipArea {
+  margin-top: 25px;
+  text-align: center;
+}
+.colorChipArea ul li {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.colorChipArea ul li button {
+  width: 50px;
+  height: 50px;
+  font-size: 0.6rem;
+}
+
+.btnGreen {
+  background-color: #4caf50;
+}
+
+.btnYellowGreen {
+  background-color: #9acd32;
+}
+
+.btnYellow {
+  background-color: #ffc107;
+}
+
+.btnMagenta {
+  background-color: #e91e63;
+}
+
+.btnCherryRed {
+  background-color: #e91e1e;
+}
+
+.btnOrange {
+  background-color: #f3753a;
+}
+
+.btnPink {
+  background-color: #ff7676;
+}
+
+.mouse {
+  display: inline-block;
+  position: absolute;
+  transform: translate(0, 0);
+  width: 20px;
+  height: 20px;
+  background-color: tomato;
+}
