@@ -11,6 +11,7 @@ let colorChipUser = document.querySelector('.colorChipUser');
 let colorData;
 let listCurrent;
 var colorPickerCurrent;
+var colorCurrent;
 
 coloringSketch.addEventListener('load', () => {
     let svgFileData = coloringSketch.contentDocument;
@@ -88,31 +89,40 @@ function onUsderColorData() {
 colorChipUser.addEventListener('click', onCreatColorChip)
 function onCreatColorChip(e) {
     let target = e.target;
+    let targetParent = target.parentNode.parentNode;
 
     if (colorPickerCurrent === undefined) {
         return
     }
+    if (colorPickerCurrent === colorCurrent) {
+        return
+    }
 
-    if (target.tagName === 'LI' && !target.querySelector('button')) {
-
+    if (target.tagName === 'LI') {
         target.innerHTML = `
                 <button>${colorPickerCurrent}</button>
             `
         target.querySelector('button').style.backgroundColor = `${colorPickerCurrent}`
         blackCheck(target.querySelector('button'));
+
+        colorPickerCurrent = colorCurrent
+
     } else if (target.tagName === 'BUTTON') {
         target.style.backgroundColor = `${colorPickerCurrent}`
+        target.innerText = `${colorPickerCurrent} 
+        `
         blackCheck(target);
+        colorPickerCurrent = colorCurrent
     }
 }
+
 
 function blackCheck(colorCheck) {
     let data = getComputedStyle(colorCheck).backgroundColor;
 
-    if (data === `rgb(0, 0, 0)`) {
+    if (data === 'rgb(0, 0, 0)') {
         colorCheck.style.color = '#fff';
     } else {
-        console.log('검은색')
         colorCheck.style.color = '#000';
     }
 }
