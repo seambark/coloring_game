@@ -4,9 +4,13 @@ let coloringSketch = document.querySelector('#coloringSketch');
 let colorChipArea = document.querySelector('.colorChipArea');
 let sketchListArea = document.querySelector('.sketchListArea');
 let sketchList = document.querySelector('.sketchList');
+let picker = document.querySelector('.picker');
+let colorChipPicker = document.querySelector('.colorChipPicker');
+let colorChipUser = document.querySelector('.colorChipUser');
 
 let colorData;
 let listCurrent;
+var colorPickerCurrent;
 
 coloringSketch.addEventListener('load', () => {
     let svgFileData = coloringSketch.contentDocument;
@@ -54,12 +58,62 @@ coloringSketch.addEventListener('load', () => {
 })
 
 colorChipArea.addEventListener('click', onColorChip);
+colorChipPicker.addEventListener('click', onUsderColorData);
 
 function onColorChip(e) {
     if (e.target.tagName === 'BUTTON') {
         let data = getComputedStyle(e.target).backgroundColor;
         colorData = data;
+    }
+}
 
+picker.addEventListener('input', onPicker)
+function onPicker(e) {
+    let data = picker.value;
+
+    colorChipPicker.style.backgroundColor = `${data}`;
+    colorChipPicker.style.borderColor = `${data}`;
+    colorChipPicker.innerText = data;
+
+    blackCheck(colorChipPicker);
+
+    colorData = data;
+}
+
+function onUsderColorData() {
+    let colorChip = colorChipPicker.textContent;
+    colorPickerCurrent = colorChip;
+}
+
+colorChipUser.addEventListener('click', onCreatColorChip)
+function onCreatColorChip(e) {
+    let target = e.target;
+
+    if (colorPickerCurrent === undefined) {
+        return
+    }
+
+    if (target.tagName === 'LI' && !target.querySelector('button')) {
+
+        target.innerHTML = `
+                <button>${colorPickerCurrent}</button>
+            `
+        target.querySelector('button').style.backgroundColor = `${colorPickerCurrent}`
+        blackCheck(target.querySelector('button'));
+    } else if (target.tagName === 'BUTTON') {
+        target.style.backgroundColor = `${colorPickerCurrent}`
+        blackCheck(target);
+    }
+}
+
+function blackCheck(colorCheck) {
+    let data = getComputedStyle(colorCheck).backgroundColor;
+
+    if (data === `rgb(0, 0, 0)`) {
+        colorCheck.style.color = '#fff';
+    } else {
+        console.log('검은색')
+        colorCheck.style.color = '#000';
     }
 }
 
@@ -83,5 +137,5 @@ function sketchListData() {
     let onLi = creatUl.querySelector('.sketchList li');
     onLi.classList.add('on');
 }
-
+blackCheck(colorChipPicker);
 sketchListData();
