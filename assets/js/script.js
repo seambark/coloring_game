@@ -7,12 +7,17 @@ let sketchList = document.querySelector('.sketchList');
 let picker = document.querySelector('.picker');
 let colorChipPicker = document.querySelector('.colorChipPicker');
 let colorChipUser = document.querySelector('.colorChipUser');
+let mouse = document.querySelector('.mouse');
 
 let colorData;
 let listCurrent;
 let colorPickerCurrent;
 let colorCurrent;
 
+body.addEventListener("mousemove", mousePainter);
+sketchListArea.addEventListener('click', onSketch);
+colorChipArea.addEventListener('click', onColorChip);
+colorChipPicker.addEventListener('click', onUsderColorData);
 coloringSketch.addEventListener('load', () => {
     let svgFileData = coloringSketch.contentDocument;
     let svgFileDataPath = svgFileData.querySelector('g');
@@ -24,42 +29,47 @@ coloringSketch.addEventListener('load', () => {
             e.target.setAttribute('fill', colorData);
         }
     }
-
-    sketchListArea.addEventListener('click', onSketch);
-    function onSketch(e) {
-        let target = e.target;
-        let targetParent = target.parentNode;
-
-        let onDel = sketchListArea.querySelector('li.on');
-        onDel && onDel.classList.remove('on');
-
-        if (target.tagName === 'IMG') {
-            let srcData = target.getAttribute('src');
-
-            listCurrent && listCurrent.classList.remove('on');
-            targetParent.parentNode.classList.add('on');
-
-            coloringSketch.setAttribute('data', `${srcData}`);
-
-            listCurrent = targetParent.parentNode;
-        } else if (target.tagName === 'BUTTON') {
-            let img = target.querySelector('img');
-            let imgData = img.getAttribute('src');
-
-            listCurrent && listCurrent.classList.remove('on');
-            targetParent.classList.add('on');
-
-            coloringSketch.setAttribute('data', `${imgData}`);
-
-            listCurrent = targetParent;
-        }
-
-    }
-
 })
 
-colorChipArea.addEventListener('click', onColorChip);
-colorChipPicker.addEventListener('click', onUsderColorData);
+function mousePainter(e) {
+    let x = e.clientX;
+    let y = e.clientY;
+
+    mouse.style.transform = `translate(${x}px, ${y}px)`
+    mouse.style.color = colorData
+
+}
+
+function onSketch(e) {
+    let target = e.target;
+    let targetParent = target.parentNode;
+
+    let onDel = sketchListArea.querySelector('li.on');
+    onDel && onDel.classList.remove('on');
+
+    if (target.tagName === 'IMG') {
+        let srcData = target.getAttribute('src');
+
+        listCurrent && listCurrent.classList.remove('on');
+        targetParent.parentNode.classList.add('on');
+
+        coloringSketch.setAttribute('data', `${srcData}`);
+
+        listCurrent = targetParent.parentNode;
+    } else if (target.tagName === 'BUTTON') {
+        let img = target.querySelector('img');
+        let imgData = img.getAttribute('src');
+
+        listCurrent && listCurrent.classList.remove('on');
+        targetParent.classList.add('on');
+
+        coloringSketch.setAttribute('data', `${imgData}`);
+
+        listCurrent = targetParent;
+    }
+
+}
+
 
 function onColorChip(e) {
     if (e.target.tagName === 'BUTTON') {
