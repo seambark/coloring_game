@@ -10,8 +10,8 @@ let colorChipUser = document.querySelector('.colorChipUser');
 
 let colorData;
 let listCurrent;
-var colorPickerCurrent;
-var colorCurrent;
+let colorPickerCurrent;
+let colorCurrent;
 
 coloringSketch.addEventListener('load', () => {
     let svgFileData = coloringSketch.contentDocument;
@@ -76,7 +76,7 @@ function onPicker(e) {
     colorChipPicker.style.borderColor = `${data}`;
     colorChipPicker.innerText = data;
 
-    blackCheck(colorChipPicker);
+    lightCheck(colorChipPicker);
 
     colorData = data;
 }
@@ -92,38 +92,40 @@ function onCreatColorChip(e) {
     let targetParent = target.parentNode.parentNode;
 
     if (colorPickerCurrent === undefined) {
-        return
+        return;
     }
     if (colorPickerCurrent === colorCurrent) {
-        return
+        return;
     }
 
     if (target.tagName === 'LI') {
         target.innerHTML = `
                 <button>${colorPickerCurrent}</button>
             `
-        target.querySelector('button').style.backgroundColor = `${colorPickerCurrent}`
-        blackCheck(target.querySelector('button'));
+        target.querySelector('button').style.backgroundColor = `${colorPickerCurrent}`;
+        lightCheck(target.querySelector('button'));
 
         colorPickerCurrent = colorCurrent
 
     } else if (target.tagName === 'BUTTON') {
-        target.style.backgroundColor = `${colorPickerCurrent}`
-        target.innerText = `${colorPickerCurrent} 
-        `
-        blackCheck(target);
-        colorPickerCurrent = colorCurrent
+        target.style.backgroundColor = `${colorPickerCurrent}`;
+        target.innerText = `${colorPickerCurrent}`;
+        lightCheck(target);
+        colorPickerCurrent = colorCurrent;
     }
 }
 
 
-function blackCheck(colorCheck) {
-    let data = getComputedStyle(colorCheck).backgroundColor;
+function lightCheck(rgbColor) {
+    let data = getComputedStyle(rgbColor).backgroundColor;
+    let dataRgbSet = data.match(/\((.*)\)/)[1];
+    let dataRgb = dataRgbSet.split(",");
+    let rgbNumber = 140;
 
-    if (data === 'rgb(0, 0, 0)') {
-        colorCheck.style.color = '#fff';
+    if (dataRgb[0] <= rgbNumber && dataRgb[1] <= rgbNumber && dataRgb[2] <= rgbNumber) {
+        rgbColor.style.color = '#fff';
     } else {
-        colorCheck.style.color = '#000';
+        rgbColor.style.color = '#000';
     }
 }
 
@@ -147,5 +149,6 @@ function sketchListData() {
     let onLi = creatUl.querySelector('.sketchList li');
     onLi.classList.add('on');
 }
-blackCheck(colorChipPicker);
+
+lightCheck(colorChipPicker);
 sketchListData();
