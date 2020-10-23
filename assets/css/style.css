@@ -144,6 +144,31 @@
   line-height: 40px;
   cursor: pointer;
 }
+.colorPicker .pickerInfo {
+  display: inline-block;
+  position: absolute;
+  top: -25px;
+  right: -175px;
+  width: 160px;
+  height: auto;
+  padding: 7px;
+  border-radius: 5px;
+  background-color: #dad5d5;
+  color: #000;
+  text-align: left;
+  line-height: 1.5em;
+  word-break: keep-all;
+}
+.colorPicker .pickerInfo::before {
+  content: "\f0d9";
+  position: absolute;
+  top: 29px;
+  left: -6px;
+  color: #dad5d5;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 1.22rem;
+}
 .colorPicker .picker {
   position: absolute;
   right: -10px;
