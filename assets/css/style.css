@@ -238,7 +238,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    max-width: 70%;
+    max-width: 92%;
     max-height: 55vh;
     height: auto;
     transform: translate(-50%, -50%);
@@ -252,30 +252,36 @@
     margin-top: 20px;
   }
   .sketchList {
+    margin: 0;
     white-space: nowrap;
   }
   .sketchList li {
     width: 100px;
   }
   .colorChipArea {
-    overflow-x: auto;
     width: 100%;
     margin-top: 20px;
     padding-bottom: 5px;
   }
   .colorChipBasics {
+    overflow-x: auto;
     white-space: nowrap;
   }
   .colorUserBox {
     display: inline-block;
     position: relative;
     width: auto;
-    padding-right: 55px;
+  }
+  .colorUserBox .colorChipUser {
+    overflow-x: auto;
+    display: block;
+    width: 88.9%;
+    white-space: nowrap;
   }
   .colorPicker {
     position: absolute;
     top: 0;
-    right: 0;
+    right: -18px;
   }
   .colorPicker .pickerInfo {
     display: none;
