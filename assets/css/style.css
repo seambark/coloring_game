@@ -186,6 +186,7 @@
   background-color: #e2e2e2;
   color: #a1a1a1;
   line-height: 50px;
+  text-align: center;
 }
 
 .mouse {
@@ -221,6 +222,7 @@
 
 @media all and (max-width: 1000px) {
   .wrap {
+    min-width: 360px;
     width: 100vw;
     padding: 25px;
   }
@@ -267,6 +269,15 @@
     overflow-x: auto;
     white-space: nowrap;
   }
+  .mouse {
+    display: none;
+  }
+}
+@media all and (min-width: 360px) and (max-width: 760px) {
+  .colorChipArea {
+    padding-bottom: 34px;
+    text-align: left;
+  }
   .colorUserBox {
     display: inline-block;
     position: relative;
@@ -284,14 +295,16 @@
     right: -18px;
   }
   .colorPicker .pickerInfo {
-    display: none;
+    top: 60px;
+    right: inherit;
+    left: -286px;
+    width: 335px;
   }
-  .mouse {
-    display: none;
-  }
-}
-@media all and (min-width: 360px) and (max-width: 760px) {
-  .colorChipArea {
-    text-align: left;
+  .colorPicker .pickerInfo::before {
+    content: "\f30c";
+    top: -6px;
+    left: 304px;
+    font-weight: 900;
+    font-size: 1.22rem;
   }
 }
