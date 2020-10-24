@@ -143,6 +143,7 @@
   color: #000;
   line-height: 40px;
   cursor: pointer;
+  text-align: center;
 }
 .colorPicker .pickerInfo {
   display: inline-block;
@@ -216,4 +217,75 @@
   top: 6px;
   width: 22px;
   height: 37px;
+}
+
+@media all and (max-width: 1000px) {
+  .wrap {
+    width: 100vw;
+    padding: 25px;
+  }
+  .coloringWrap {
+    width: 100%;
+    height: auto;
+    padding-right: 0;
+  }
+  .coloringWrap .coloringArea {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+  }
+  .coloringArea object {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    max-width: 70%;
+    max-height: 55vh;
+    height: auto;
+    transform: translate(-50%, -50%);
+  }
+  .coloringWrap .sketchListArea {
+    overflow-x: auto;
+    position: inherit;
+    top: inherit;
+    right: inherit;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .sketchList {
+    white-space: nowrap;
+  }
+  .sketchList li {
+    width: 100px;
+  }
+  .colorChipArea {
+    overflow-x: auto;
+    width: 100%;
+    margin-top: 20px;
+    padding-bottom: 5px;
+  }
+  .colorChipBasics {
+    white-space: nowrap;
+  }
+  .colorUserBox {
+    display: inline-block;
+    position: relative;
+    width: auto;
+    padding-right: 55px;
+  }
+  .colorPicker {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .colorPicker .pickerInfo {
+    display: none;
+  }
+  .mouse {
+    display: none;
+  }
+}
+@media all and (min-width: 360px) and (max-width: 760px) {
+  .colorChipArea {
+    text-align: left;
+  }
 }
