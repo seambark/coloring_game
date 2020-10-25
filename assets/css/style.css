@@ -251,7 +251,7 @@
     top: inherit;
     right: inherit;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 15px;
   }
   .sketchList {
     margin: 0;
@@ -263,42 +263,43 @@
   .colorChipArea {
     width: 100%;
     margin-top: 20px;
-    padding-bottom: 5px;
-  }
-  .colorChipBasics {
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-  .mouse {
-    display: none;
-  }
-}
-@media all and (min-width: 360px) and (max-width: 760px) {
-  .colorChipArea {
     padding-bottom: 34px;
-    text-align: left;
+  }
+  .colorChipArea .colorChipBasics {
+    font-size: 0;
+  }
+  .colorChipArea .colorChipBasics li {
+    width: 14.28%;
+  }
+  .colorChipArea .colorChipUser {
+    display: block;
+    width: calc(100% - 54px);
+    font-size: 0;
+  }
+  .colorChipArea .colorChipUser li {
+    width: 16.6%;
+    border-style: solid;
+    border-width: 1px 0 1px 1px;
+    border-color: #b3b3b3;
+    font-size: 0.6rem;
+  }
+  .colorChipArea .colorChipUser li:last-child {
+    border-right: 1px solid #b3b3b3;
   }
   .colorUserBox {
-    display: inline-block;
     position: relative;
     width: auto;
-  }
-  .colorUserBox .colorChipUser {
-    overflow-x: auto;
-    display: block;
-    width: 88.9%;
-    white-space: nowrap;
   }
   .colorPicker {
     position: absolute;
     top: 0;
-    right: -18px;
+    right: 0;
   }
   .colorPicker .pickerInfo {
     top: 60px;
     right: inherit;
-    left: -286px;
-    width: 335px;
+    left: -281px;
+    width: 330px;
   }
   .colorPicker .pickerInfo::before {
     content: "\f30c";
@@ -307,4 +308,10 @@
     font-weight: 900;
     font-size: 1.22rem;
   }
+  .mouse {
+    display: none;
+  }
 }
+/* @media all and (min-width: 360px) and (max-width: 760px) {
+
+} */
