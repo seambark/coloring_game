@@ -21,9 +21,9 @@
   background-color: #fff;
   text-align: center;
 }
-.coloringArea object {
+.coloringArea #coloringSketch {
   display: inline-block;
-  max-width: 400px;
+  max-width: 500px;
   height: 100%;
 }
 
@@ -189,37 +189,6 @@
   text-align: center;
 }
 
-.mouse {
-  display: block;
-  position: absolute;
-  left: 2px;
-  top: -45px;
-  width: 20px;
-  height: 20px;
-  color: #000;
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  font-size: 2rem;
-  z-index: 99999;
-}
-.mouse::before {
-  content: "\f591";
-  position: absolute;
-  left: 0;
-  top: 6px;
-  color: #000;
-}
-
-.mouse::after {
-  overflow: hidden;
-  content: "\f591";
-  position: absolute;
-  left: 0;
-  top: 6px;
-  width: 22px;
-  height: 37px;
-}
-
 @media all and (max-width: 1000px) {
   .wrap {
     min-width: 360px;
@@ -307,9 +276,6 @@
     left: 304px;
     font-weight: 900;
     font-size: 1.22rem;
-  }
-  .mouse {
-    display: none;
   }
 }
 /* @media all and (min-width: 360px) and (max-width: 760px) {
