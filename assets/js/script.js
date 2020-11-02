@@ -7,20 +7,21 @@ let sketchList = document.querySelector('.sketchList');
 let picker = document.querySelector('.picker');
 let colorChipPicker = document.querySelector('.colorChipPicker');
 let colorChipUser = document.querySelector('.colorChipUser');
-let mouse = document.querySelector('.mouse');
 
 let colorData;
 let listCurrent;
 let colorPickerCurrent;
 let colorCurrent;
 
-body.addEventListener("mousemove", mousePainter);
 sketchListArea.addEventListener('click', onSketch);
 colorChipArea.addEventListener('click', onColorChip);
 colorChipPicker.addEventListener('click', onUsderColorData);
 coloringSketch.addEventListener('load', () => {
     let svgFileData = coloringSketch.contentDocument;
     let svgFileDataPath = svgFileData.querySelector('g');
+    let svgFileDataSvg = svgFileData.querySelector('svg');
+    let colorBall = 25;
+    let sizeWidth = window.innerWidth;
     svgFileDataPath.style.cursor = 'pointer';
 
     svgFileData.addEventListener('click', onColoring);
@@ -29,16 +30,32 @@ coloringSketch.addEventListener('load', () => {
             e.target.setAttribute('fill', colorData);
         }
     }
+
+    function creatColorBall() {
+        let creatCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        svgFileDataSvg.appendChild(creatCircle);
+        creatCircle.setAttribute('r', '10');
+        creatCircle.setAttribute('stroke', '#fff');
+        creatCircle.setAttribute('stroke-width', '3');
+        creatCircle.setAttribute('fill', '#000');
+        creatCircle.classList.add('colorBall');
+    }
+
+    function onPaintColor(e) {
+        let mouseBall = svgFileData.querySelector('.colorBall');
+        mouseBall.setAttribute('cx', e.clientX + colorBall);
+        mouseBall.setAttribute('cy', e.clientY + colorBall + 5);
+        mouseBall.setAttribute('fill', colorData);
+    }
+
+    function widthCheck() {
+        if (sizeWidth > 1000) {
+            creatColorBall();
+            svgFileData.addEventListener("mousemove", onPaintColor);
+        }
+    }
+    widthCheck()
 })
-
-function mousePainter(e) {
-    let x = e.clientX;
-    let y = e.clientY;
-
-    mouse.style.transform = `translate(${x}px, ${y}px)`
-    mouse.style.color = colorData
-
-}
 
 function onSketch(e) {
     let target = e.target;
