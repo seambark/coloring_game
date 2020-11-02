@@ -16,7 +16,6 @@
 .coloringWrap .coloringArea {
   width: 500px;
   height: 100%;
-  padding: 20px;
   border: 1px solid #000;
   background-color: #fff;
   text-align: center;
@@ -24,7 +23,6 @@
 .coloringArea #coloringSketch {
   display: inline-block;
   max-width: 500px;
-  height: 100%;
 }
 
 .coloringWrap .sketchListArea {
@@ -205,13 +203,12 @@
     width: 100%;
     height: 60vh;
   }
-  .coloringArea object {
+  .coloringArea #coloringSketch {
     position: absolute;
     top: 50%;
     left: 50%;
-    max-width: 92%;
-    max-height: 55vh;
-    height: auto;
+    max-width: 100%;
+    height: 100%;
     transform: translate(-50%, -50%);
   }
   .coloringWrap .sketchListArea {
